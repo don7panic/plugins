@@ -75,5 +75,6 @@ Antigravity has no Cursor Automations (`api2.cursor.sh/automations`), Bugbot, Cu
 | `/loop` | Use `/goal` for long autonomous runs or `/schedule` for recurring checks. |
 | Bugbot | Triage existing Bugbot PR comments as ordinary GitHub review threads via `gh`. Skip steps that trigger or configure Bugbot. |
 | Cursor Cloud Agents | Map `environment: "cloud"` to `Workspace: "share"` or `"branch"` on `invoke_subagent`. Skip steps that query a Cursor cloud dashboard. |
-| Built-in PR tool | Use `gh` CLI commands via `run_command` (e.g., `gh pr create`, `gh pr view`). Not a skip. |
+| Built-in PR tool | Detect the forge from `git remote -v` first: use `gh` for GitHub remotes and `glab` for GitLab remotes via `run_command` (if `glab` is unavailable, stop at local commit/push and report). Not a skip. |
 | `cursor-team-kit` (`/deslop`, `control-cli`, `control-ui`) | For `control-ui`, use the `browser` subagent; for `control-cli`, drive via `run_command`; for `/deslop`, use pstack's own `/unslop` and `/no-comments` plus a manual diff pass. |
+| pstack `swarm` & `make-bot-ui` skills | Removed from this Antigravity build: `skills/swarm` conflicted with Antigravity's built-in `/swarm` (use Antigravity's native `run_workflow`, `/swarm`, or parallel `invoke_subagent` for fan-out), and `skills/make-bot-ui` depended on Cursor Automations webhooks. |
